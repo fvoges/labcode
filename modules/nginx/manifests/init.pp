@@ -48,16 +48,6 @@ class nginx {
     ensure => present,
   }
 
-  file { $docroot:
-    ensure => directory,
-  }
-
-  file { "${docroot}/index.html":
-    ensure  => file,
-    content => epp('nginx/index.html.epp'),
-    before  => Service[$svc_name],
-  }
-
   file { "${confdir}/nginx.conf":
     ensure  => file,
     content => epp('nginx/nginx.conf.epp'),
@@ -65,16 +55,14 @@ class nginx {
     notify  => Service[$svc_name],
   }
 
-  file { "${confddir}/default.conf":
-    ensure  => file,
-    content => epp('nginx/default.conf.epp'),
-    require => Package[$pkg_name],
-    notify  => Service[$svc_name],
-  }
-
   service { $svc_name:
     ensure    => running,
     enable    => true,
+  }
+
+  nginx::vhost { 'default':
+    docroot    => $docroot,
+    servername => $::fqdn,
   }
 }
 

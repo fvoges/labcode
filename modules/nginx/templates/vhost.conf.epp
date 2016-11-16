@@ -1,0 +1,12 @@
+#
+# The default server
+#
+server {
+    listen       <%= $port %><% if $title == 'default' { %> default_server<% } %>;
+    server_name  <%= $servername %>;
+
+    root   <%= $docroot %>;
+    index  index.html index.htm;
+}
+
+

@@ -1,10 +1,13 @@
-class nginx {
+class nginx (
+  $root = undef,
+) {
   case $::osfamily {
     'RedHat': {
       $pkg_name = 'nginx'
       $user     = 'root'
       $group    = 'root'
-      $docroot  = '/var/www'
+      #$docroot  = '/var/www'
+      $default_docroot  = '/var/www'
       $confdir  = '/etc/nginx'
       $confddir = "${confdir}/conf.d"
       $logdir   = '/var/log/nginx'
@@ -15,7 +18,8 @@ class nginx {
       $pkg_name = 'nginx'
       $user     = 'root'
       $group    = 'root'
-      $docroot  = '/var/www'
+      #$docroot  = '/var/www'
+      $default_docroot  = '/var/www'
       $confdir  = '/etc/nginx'
       $confddir = "${confdir}/conf.d"
       $logdir   = '/var/log/nginx'
@@ -26,7 +30,8 @@ class nginx {
       $pkg_name = 'nginx-service'
       $user     = 'Administrator'
       $group    = 'Administrator'
-      $docroot  = 'C:/ProgramData/nginx/html'
+      #$docroot  = 'C:/ProgramData/nginx/html'
+      $default_docroot  = 'C:/ProgramData/nginx/html'
       $confdir  = 'C:/ProgramData/nginx/conf'
       $confddir = 'C:/ProgramData/nginx/conf.d'
       $logdir   = 'C:/ProgramData/nginx/logs'
@@ -37,7 +42,12 @@ class nginx {
       fail("Operating system not supported: ${::operatingsystem}")
     }
   }
- 
+  
+  $docroot = $root ? {
+    undef   => $default_docroot,
+    default => $root,
+  }
+
   File {
     owner  => $user,
     group  => $group,

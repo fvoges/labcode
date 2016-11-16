@@ -29,7 +29,7 @@ define nginx::vhost (
   }
 
   file { "${docroot}/index.html":
-    ensure  => directory,
+    ensure  => file,
     content => epp('nginx/index.html.epp',
         {
           servername => $servername,

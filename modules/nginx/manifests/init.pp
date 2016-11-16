@@ -1,53 +1,14 @@
 class nginx (
-  $root = undef,
-) {
-  case $::osfamily {
-    'RedHat': {
-      $pkg_name = 'nginx'
-      $user     = 'root'
-      $group    = 'root'
-      #$docroot  = '/var/www'
-      $default_docroot  = '/var/www'
-      $confdir  = '/etc/nginx'
-      $confddir = "${confdir}/conf.d"
-      $logdir   = '/var/log/nginx'
-      $svc_name = 'nginx'
-      $svc_user = 'nginx'
-    }
-    'Debian': {
-      $pkg_name = 'nginx'
-      $user     = 'root'
-      $group    = 'root'
-      #$docroot  = '/var/www'
-      $default_docroot  = '/var/www'
-      $confdir  = '/etc/nginx'
-      $confddir = "${confdir}/conf.d"
-      $logdir   = '/var/log/nginx'
-      $svc_name = 'nginx'
-      $svc_user = 'www-data'
-    }
-    'windows': {
-      $pkg_name = 'nginx-service'
-      $user     = 'Administrator'
-      $group    = 'Administrator'
-      #$docroot  = 'C:/ProgramData/nginx/html'
-      $default_docroot  = 'C:/ProgramData/nginx/html'
-      $confdir  = 'C:/ProgramData/nginx/conf'
-      $confddir = 'C:/ProgramData/nginx/conf.d'
-      $logdir   = 'C:/ProgramData/nginx/logs'
-      $svc_name = 'nginx'
-      $svc_user = 'nobody'
-    }
-    default: {
-      fail("Operating system not supported: ${::operatingsystem}")
-    }
-  }
-  
-  $docroot = $root ? {
-    undef   => $default_docroot,
-    default => $root,
-  }
-
+  $pkg_name = $nginx::params::pkg_name,
+  $user     = $nginx::params::user,
+  $group    = $nginx::params::group,
+  $docroot  = $nginx::params::docroot,
+  $confdir  = $nginx::params::confdir,
+  $confddir = $nginx::params::confddir,
+  $logdir   = $nginx::params::logdir,
+  $svc_name = $nginx::params::svc_name,
+  $svc_user = $nginx::params::svc_user,
+) inherits nginx::params {
   File {
     owner  => $user,
     group  => $group,

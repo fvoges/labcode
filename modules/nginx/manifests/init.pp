@@ -1,45 +1,78 @@
 class nginx {
-  package { 'nginx':
+  case $::osfamily {
+    'RedHat': {
+      $pkg_name = 'nginx'
+      $user     = 'root'
+      $group    = 'root'
+      $docroot  = '/var/www'
+      $confdir  = '/etc/nginx'
+      $confddir = "${confdir}/conf.d"
+      $logdir   = '/var/log/nginx'
+      $svc_name = 'nginx'
+      $svc_user = 'nginx'
+    }
+    'Debian': {
+      $pkg_name = 'nginx'
+      $user     = 'root'
+      $group    = 'root'
+      $docroot  = '/var/www'
+      $confdir  = '/etc/nginx'
+      $confddir = "${confdir}/conf.d"
+      $logdir   = '/var/log/nginx'
+      $svc_name = 'nginx'
+      $svc_user = 'www-data'
+    }
+    'windows': {
+      $pkg_name = 'nginx-service'
+      $user     = 'Administrator'
+      $group    = 'Administrator'
+      $docroot  = 'C:/ProgramData/nginx/html'
+      $confdir  = 'C:/ProgramData/nginx/conf'
+      $confddir = 'C:/ProgramData/nginx/conf.d'
+      $logdir   = 'C:/ProgramData/nginx/logs'
+      $svc_name = 'nginx'
+      $svc_user = 'nobody'
+    }
+    default: {
+      fail("Operating system not supported: ${::operatingsystem}")
+    }
+  }
+ 
+  File {
+    owner  => $user,
+    group  => $group,
+    mode   => '0644',
+  }
+
+  package { $pkg_name:
     ensure => present,
   }
 
-  file { '/var/www':
+  file { $docroot:
     ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
   }
 
-  file { '/var/www/index.html':
+  file { "${docroot}/index.html":
     ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
     source => 'puppet:///modules/nginx/index.html',
-    before => Service['nginx'],
+    before => Service[$svc_name],
   }
 
-  file { '/etc/nginx/nginx.conf':
+  file { "${confdir}/nginx.conf":
     ensure   => file,
-    owner    => 'root',
-    group    => 'root',
-    mode     => '0644',
-    source   => 'puppet:///modules/nginx/nginx.conf',
-    require  => Package['nginx'],
-    notify   => Service['nginx'],
+    source   => "puppet:///modules/nginx/${::osfamily}.conf",
+    require  => Package[$pkg_name],
+    notify   => Service[$svc_name],
   }
 
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${confddir}/default.conf":
     ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/nginx/default.conf',
-    require => Package['nginx'],
-    notify  => Service['nginx'],
+    source => "puppet:///modules/nginx/default-${::kernel}.conf",
+    require => Package[$pkg_name],
+    notify  => Service[$svc_name],
   }
 
-  service { 'nginx':
+  service { $svc_name:
     ensure    => running,
     enable    => true,
   }

@@ -53,21 +53,21 @@ class nginx {
   }
 
   file { "${docroot}/index.html":
-    ensure => file,
-    source => 'puppet:///modules/nginx/index.html',
-    before => Service[$svc_name],
+    ensure  => file,
+    content => epp('nginx/index.html.epp'),
+    before  => Service[$svc_name],
   }
 
   file { "${confdir}/nginx.conf":
-    ensure   => file,
-    source   => "puppet:///modules/nginx/${::osfamily}.conf",
-    require  => Package[$pkg_name],
-    notify   => Service[$svc_name],
+    ensure  => file,
+    content => epp('nginx/nginx.conf.epp'),
+    require => Package[$pkg_name],
+    notify  => Service[$svc_name],
   }
 
   file { "${confddir}/default.conf":
-    ensure => file,
-    source => "puppet:///modules/nginx/default-${::kernel}.conf",
+    ensure  => file,
+    content => epp('nginx/default.conf.epp'),
     require => Package[$pkg_name],
     notify  => Service[$svc_name],
   }

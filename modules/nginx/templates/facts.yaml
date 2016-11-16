@@ -1,0 +1,212 @@
+aio_agent_version: 1.5.3
+augeas:
+  version: 1.4.0
+disks:
+  sda:
+    model: Virtual disk
+    size: 10.00 GiB
+    size_bytes: 10737418240
+    vendor: VMware
+  sr0:
+    model: VMware IDE CDR00
+    size: 1.00 GiB
+    size_bytes: 1073741312
+    vendor: NECVMWar
+dmi:
+  bios:
+    release_date: 04/14/2014
+    vendor: Phoenix Technologies LTD
+    version: "6.00"
+  board:
+    manufacturer: Intel Corporation
+    product: 440BX Desktop Reference Platform
+    serial_number: None
+  chassis:
+    asset_tag: No Asset Tag
+    type: Other
+  manufacturer: VMware, Inc.
+  product:
+    name: VMware Virtual Platform
+    serial_number: VMware-42 3a 41 67 c0 6e 1f 81-c8 f8 ab 94 2e 35 7c 3a
+    uuid: 423A4167-C06E-1F81-C8F8-AB942E357C3A
+facterversion: 3.3.0
+filesystems: ext2,ext4,iso9660
+identity:
+  gid: 0
+  group: root
+  uid: 0
+  user: root
+is_virtual: true
+kernel: Linux
+kernelmajversion: "2.6"
+kernelrelease: 2.6.32-573.22.1.el6.i686
+kernelversion: 2.6.32
+load_averages:
+  15m: 0.09
+  1m: 0.03
+  5m: 0.08
+memory:
+  swap:
+    available: 4.00 GiB
+    available_bytes: 4294963200
+    capacity: 0%
+    total: 4.00 GiB
+    total_bytes: 4294963200
+    used: 0 bytes
+    used_bytes: 0
+  system:
+    available: 835.76 MiB
+    available_bytes: 876355584
+    capacity: 16.94%
+    total: 1006.27 MiB
+    total_bytes: 1055145984
+    used: 170.51 MiB
+    used_bytes: 178790400
+mountpoints:
+  /:
+    available: 3.26 GiB
+    available_bytes: 3502444544
+    capacity: 100%
+    device: /dev/mapper/vg00-rootvol
+    filesystem: ext4
+    options:
+      - rw
+    size: 1.57 GiB
+    size_bytes: 1680908288
+    used: 16.00 EiB
+    used_bytes: -1821536256
+  /boot:
+    available: 129.51 MiB
+    available_bytes: 135800832
+    capacity: 33.14%
+    device: /dev/sda1
+    filesystem: ext2
+    options:
+      - rw
+    size: 193.69 MiB
+    size_bytes: 203097088
+    used: 64.18 MiB
+    used_bytes: 67296256
+networking:
+  dhcp: 192.168.15.254
+  domain: puppetlabs.vm
+  fqdn: boats.puppetlabs.vm
+  hostname: boats
+  interfaces:
+    eth0:
+      bindings:
+        - address: 10.0.0.8
+          netmask: 255.255.255.0
+          network: 10.0.0.0
+      bindings6:
+        - address: "fe80::250:56ff:fe3f:b1b6"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "fe80::"
+      dhcp: 192.168.15.254
+      ip: 10.0.0.8
+      ip6: "fe80::250:56ff:fe3f:b1b6"
+      mac: "00:50:56:3f:b1:b6"
+      mtu: 1500
+      netmask: 255.255.255.0
+      netmask6: "ffff:ffff:ffff:ffff::"
+      network: 10.0.0.0
+      network6: "fe80::"
+    lo:
+      bindings:
+        - address: 127.0.0.1
+          netmask: 255.0.0.0
+          network: 127.0.0.0
+      bindings6:
+        - address: "::1"
+          netmask: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+          network: "::1"
+      ip: 127.0.0.1
+      ip6: "::1"
+      mtu: 65536
+      netmask: 255.0.0.0
+      netmask6: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+      network: 127.0.0.0
+      network6: "::1"
+  ip: 10.0.0.8
+  ip6: "fe80::250:56ff:fe3f:b1b6"
+  mac: "00:50:56:3f:b1:b6"
+  mtu: 1500
+  netmask: 255.255.255.0
+  netmask6: "ffff:ffff:ffff:ffff::"
+  network: 10.0.0.0
+  network6: "fe80::"
+  primary: eth0
+os:
+  architecture: i386
+  distro:
+    codename: Final
+    description: CentOS release 6.7 (Final)
+    id: CentOS
+    release:
+      full: "6.7"
+      major: "6"
+      minor: "7"
+    specification: ":base-4.0-ia32:base-4.0-noarch:core-4.0-ia32:core-4.0-noarch:graphics-4.0-ia32:graphics-4.0-noarch:printing-4.0-ia32:printing-4.0-noarch"
+  family: RedHat
+  hardware: i686
+  name: CentOS
+  release:
+    full: "6.7"
+    major: "6"
+    minor: "7"
+  selinux:
+    enabled: false
+partitions:
+  /dev/mapper/vg00-rootvol:
+    filesystem: ext4
+    mount: /
+    size: 5.78 GiB
+    size_bytes: 6207569920
+    uuid: 4163a1f4-90d1-4167-8821-5fc2e33da680
+  /dev/mapper/vg00-swapvol:
+    filesystem: swap
+    size: 4.00 GiB
+    size_bytes: 4294967296
+    uuid: afbe5604-a0a8-4fb1-9ded-d1823f467326
+  /dev/sda1:
+    filesystem: ext2
+    mount: /boot
+    size: 200.00 MiB
+    size_bytes: 209715200
+    uuid: 74693940-6ee4-47d5-a891-03b503cc873c
+  /dev/sda2:
+    filesystem: LVM2_member
+    size: 9.80 GiB
+    size_bytes: 10526654464
+    uuid: JR3823-Ofyl-QUPL-3QAm-9nsT-dLMt-visJ7m
+path: "/opt/puppetlabs/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/usr/lib/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin:/root/bin"
+processors:
+  count: 1
+  isa: i686
+  models:
+    - Intel(R) Xeon(R) CPU           X5650  @ 2.67GHz
+  physicalcount: 1
+puppetlabs_class: fundamentals
+puppetlabs_role: agent
+ruby:
+  platform: i686-linux
+  sitedir: /opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0
+  version: 2.1.9
+ssh:
+  dsa:
+    fingerprints:
+      sha1: SSHFP 2 1 2fb52cfeb36ed384863219c73ce234b160038645
+      sha256: SSHFP 2 2 dd6febc98cbd1689fec014df2ffe346791e1b394dd0d3f480a41332f8e7ea19a
+    key: AAAAB3NzaC1kc3MAAACBAJm/G7j2wDh2G4X8Az1TZlTpC6ETnSF2JHDVRyq5XpWw/51PUb3UmGeVj9AYoB9RPOk9jNoB4GsD1dOc+ToAKtlvwHe1juxEG6usXE/LJ/OtRwgSCc2wqFrCxAGLRinf9v2/WwgOmduL7zO5mfDeWssPKg0tE3hpP9LB5F90QRCHAAAAFQCMtzJJgvX+j3g+VR/sfaLc+5FlmwAAAIBAf9CuW9wkL+vTNzuU0BOzSkYBK0PcL1DJLLPNV/9NWoCY8pMUtd9bBGVetlEcVl5EJhUdVuY6gGTzX/pefz7OXQNC5/O4He8nsUAilIeW2veazuRUl4+uo24hc6kpyuPmnvPQy2+p7H6y7jSMu/h8a5qd3sqXSTBs48W4v1I55AAAAIBd1FdoNkLGYTs2OVevNjz5duiycFbUUE11QQfZpbGci+h/dl5wOFetxL3/tuFzJku8ebMJrF2SOc0GxPejRHDeqZwKkyFiWBjp1p35+t6fdzTu3CvIv4HElkMmTt8lDV5ZOFxBMe1zy4Q4qj/L5fHYVrEs8VlfGTuPSpOwEaG9Yg==
+  rsa:
+    fingerprints:
+      sha1: SSHFP 1 1 4f3de8b8903fc2155e8483588b4b3de9dca5c8f6
+      sha256: SSHFP 1 2 e3c2c5229e8b239da3d775e80763fc93128febb6d9279455d5a8cd2b22c84010
+    key: AAAAB3NzaC1yc2EAAAABIwAAAQEAxESbD387lftXTLOUrC6qCLIhD1owTz0MJof7OCz51M2zyRAanHC5IyBteE8IcTKZd2ZiKqLEap6vLDpg3QnUNRoOFuPHSdA+qUh/qH7OBZKE+HIyqhIGF+w7seWzNgbbOqW6fdEv3+BLOphaNF6bw2V4qIr4LivnFQkF5um83lSqOQ8SoGT4g85rXC0W0I9xf1YlCZZcYO+ul1rVDYDPQQBEwdxSzQKPWmM6dZON37oLB+LcJRzsVcM9cXPpBNVnjaSxC7jgpIy3MVoWhU9LZFv1odmI6o1a17J/Pvmzc7G129hTXBHCRXbbOFiRrz1fmZduQLhF3lxLmkzqyLoNjw==
+system_uptime:
+  days: 2
+  hours: 50
+  seconds: 183549
+  uptime: 2 days
+timezone: UTC
+virtual: vmware
